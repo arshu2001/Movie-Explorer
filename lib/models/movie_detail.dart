@@ -1,4 +1,3 @@
-import 'package:the_movie_database/models/movie.dart';
 
 class MovieDetail {
   final String title;

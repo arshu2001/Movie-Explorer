@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:the_movie_database/core/theme/app_theme.dart';
 import 'package:the_movie_database/views/success.dart';
 
@@ -19,7 +18,6 @@ class BookingScreen extends HookWidget {
     // State for selection
     final selectedDate = useState(DateTime.now());
     final selectedTime = useState<String?>(null);
-    final confirmed = useState(false);
 
     // Dummy data
     final dates = List.generate(7, (index) => DateTime.now().add(Duration(days: index)));
@@ -203,52 +201,6 @@ class BookingScreen extends HookWidget {
     );
   }
 
-  void _showBookingDialog(BuildContext context, String title, DateTime date, String time) {
-    showDialog(
-      context: context,
-      builder: (context) => Dialog(
-        backgroundColor: AppTheme.cardColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.check_circle, color: Colors.green, size: 64),
-              const SizedBox(height: 16),
-              const Text(
-                'Booking Confirmed!',
-                style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 24),
-              QrImageView(
-                data: '$title|$date|$time',
-                version: QrVersions.auto,
-                size: 200.0,
-                backgroundColor: Colors.white,
-              ),
-              const SizedBox(height: 24),
-              Text(
-                'Bring this code to the cinema',
-                style: TextStyle(color: Colors.grey[400]),
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(); // Close dialog
-                    Navigator.of(context).popUntil((route) => route.isFirst); // Go to Home
-                  },
-                  child: const Text('Done', style: TextStyle(fontSize: 16)),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   String _getMonth(DateTime date) {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

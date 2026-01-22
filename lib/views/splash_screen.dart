@@ -7,7 +7,6 @@ import 'package:the_movie_database/core/widgets/custom_button.dart';
 import 'package:the_movie_database/core/widgets/customtext.dart';
 import 'package:the_movie_database/core/widgets/dimention.dart';
 import 'package:the_movie_database/views/bottom_nav_screen.dart';
-import 'package:the_movie_database/views/home_screen.dart';
 
 class SplashScreen extends HookWidget {
   const SplashScreen({super.key});
